@@ -6,13 +6,12 @@ import com.userservice.userservice.payload.RegisterRequest;
 import com.userservice.userservice.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.auth.AUTH;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.authentication.AbstractAuthenticationTargetUrlRequestHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -20,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthenticationService authenticationService;
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello";
+    }
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {

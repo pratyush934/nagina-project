@@ -16,9 +16,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
+/*
+* In the case of LAZY initialization
+* @Transactional(readOnly = true)
+* */
+
 @Entity
 @Table(name = "user")
-@ToString
+@ToString(exclude = {"roles", "address"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -40,8 +45,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Size(min = 4, max = 20)
+//    @Size(min = 4, max = 20)
     private String passWord;
 
     @CreationTimestamp
@@ -58,7 +62,7 @@ public class User implements UserDetails {
     Set<Role> roles;
 
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
 
     @Override

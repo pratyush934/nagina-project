@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,10 +30,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private Logger logger = LoggerFactory.getLogger(JwtFilter.class);
 
-    private JwtService jwtService;
-    private UserDetailsService userDetailsService;
-    private HandlerExceptionResolver handlerExceptionResolver;
-    private UserRepository userRepository;
+    private final JwtService jwtService;
+    private final UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -84,7 +83,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
         } catch (Exception e) {
             logger.warn("The error message is in the file JwtFilter Class {}", e.getMessage());
-            handlerExceptionResolver.resolveException(request, response, null, e);
+//            handlerExceptionResolver.resolveException(request, response, null, e);
+        } finally {
+            filterChain.doFilter(request, response);
         }
     }
 }

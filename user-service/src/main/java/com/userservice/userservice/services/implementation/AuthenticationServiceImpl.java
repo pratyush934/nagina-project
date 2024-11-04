@@ -60,6 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String token = jwtService.generateToken(user);
         return AuthenticationResponse
                 .builder()
+                .userId(user.getUserId())
                 .token(token)
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
@@ -86,6 +87,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String token = jwtService.generateToken(user);
         return AuthenticationResponse
                 .builder()
+                .userId(user.getUserId())
                 .token(token)
                 .email(user.getEmail())
                 .firstName(user.getFirstName())

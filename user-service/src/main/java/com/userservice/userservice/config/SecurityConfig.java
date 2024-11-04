@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,6 +20,7 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
@@ -38,7 +40,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/api/v1/users/**").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/api/v1/dispatcher/**").hasAnyRole("DISPATCHER", "ADMIN")
-                                .requestMatchers("/api/v1/packager/**").hasAnyRole("DISPATCHER", "ADMIN")
+                                .requestMatchers("/api/v1/packager/**").hasAnyRole("PACKAGER", "ADMIN")
                                 .requestMatchers("/api/v1/storemanager/**").hasAnyRole("STOREMANAGER", "ADMIN")
                                 .requestMatchers("/api/v1/stockmanager/**").hasAnyRole("STOCKMANAGER", "ADMIN")
                                 .anyRequest()
@@ -55,7 +57,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
-        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Access-Control-Allow-Origin"));
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:8081"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));
 

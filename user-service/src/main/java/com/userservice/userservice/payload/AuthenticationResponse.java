@@ -11,6 +11,7 @@ import lombok.*;
 @ToString
 public class AuthenticationResponse {
 
+    private String userId;
     private String token;
     private String email;
     private String firstName;
