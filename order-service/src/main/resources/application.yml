@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: ORDER-SERVICE
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/nagina-order-service
+    username: root
+    password: Pratyush@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8083
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761
+    enabled: true

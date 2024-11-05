@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: PRODUCT-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/nagina-product-service
+    username: root
+    password: Pratyush@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8082
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
