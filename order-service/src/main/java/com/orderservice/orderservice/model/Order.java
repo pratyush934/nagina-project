@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_table")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,10 +28,10 @@ public class Order {
     @UpdateTimestamp
     private Date updatedAt;
 
+    @Enumerated(EnumType.STRING)
     private SHIPMENT shipmentStatus;
 
     private Boolean paymentStatus;
-
 
     @ElementCollection
     @CollectionTable(name = "order_products" , joinColumns = @JoinColumn(name = "order_id"))
