@@ -6,5 +6,6 @@ public enum SHIPMENT {
     PACKED,
     SHIPPED,
     DELIVERED,
-    CANCELLED
+    CANCELLED,
+    REMOVED
 }
