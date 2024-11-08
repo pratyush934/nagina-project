@@ -76,6 +76,7 @@ public class JwtService {
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+    //I am breaking the rules
     public boolean isTokenExpired(String token) {
         return extractExpirationTime(token).before(new Date());
     }
