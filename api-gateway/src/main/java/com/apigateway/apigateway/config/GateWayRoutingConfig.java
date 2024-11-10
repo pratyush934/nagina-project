@@ -38,22 +38,22 @@ public class GateWayRoutingConfig {
                         .uri("lb://STOCK-SERVICE"))
                 .build();
     }
-
-    @Bean
-    public CorsWebFilter corsWebFilter() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-
-        corsConfiguration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Access-Control-Allow-Origin"));
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
-        corsConfiguration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-
-
-        // No casting needed here
-        return new CorsWebFilter((CorsConfigurationSource) urlBasedCorsConfigurationSource);
-    }
+//
+//    @Bean
+//    public CorsWebFilter corsWebFilter() {
+//        CorsConfiguration corsConfiguration = new CorsConfiguration();
+//
+//        corsConfiguration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Access-Control-Allow-Origin", "X-Forwarded-Authorization"));
+//        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+//        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
+//        corsConfiguration.setAllowCredentials(true);
+//
+//        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+//        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+//
+//
+//        // No casting needed here
+//        return new CorsWebFilter((CorsConfigurationSource) urlBasedCorsConfigurationSource);
+//    }
 
 }
